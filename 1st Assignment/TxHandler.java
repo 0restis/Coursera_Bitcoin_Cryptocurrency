@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TxHandler {
-
     UTXOPool scrgLedger = new UTXOPool();
 
     /**
@@ -11,9 +10,7 @@ public class TxHandler {
      * constructor.
      */
     public TxHandler(UTXOPool utxoPool) {
-        
         scrgLedger = new UTXOPool(utxoPool);
-
     }
 
     /**
@@ -26,13 +23,11 @@ public class TxHandler {
      *     values; and false otherwise.
      */
     public boolean isValidTx(Transaction tx) {
-
         double txInputSum = 0;
         double txOutputSum = 0;
         UTXOPool doubleSpend = new UTXOPool();
 
         for (int i = 0; i < tx.numInputs(); i++) {
-        
             Transaction.Input in = tx.getInput(i);
             UTXO ut = new UTXO(in.prevTxHash, in.outputIndex);
             if (!scrgLedger.contains(ut)) return false;
@@ -41,18 +36,12 @@ public class TxHandler {
             if (doubleSpend.contains(ut)) return false;
             doubleSpend.addUTXO(ut,out);
             txInputSum += out.value;
-
         }
-
         for (int i = 0; i < tx.numOutputs(); i++) {
-
             if (tx.getOutput(i).value < 0) return false;
             txOutputSum += tx.getOutput(i).value;
-        
         }
-
         return txInputSum >= txOutputSum;
-
     }
 
     /**
@@ -61,34 +50,23 @@ public class TxHandler {
      * updating the current UTXO pool as appropriate.
      */
     public Transaction[] handleTxs(Transaction[] possibleTxs) {
-
         ArrayList<Transaction> txBlockList = new ArrayList<Transaction>();
         
         for (Transaction tx : possibleTxs){
-
             if (isValidTx(tx)) {
-
                 for (Transaction.Input in : tx.getInputs()) {
-                
                     UTXO ut = new UTXO(in.prevTxHash, in.outputIndex);
                     scrgLedger.removeUTXO(ut);
-                
                 }
-                
                 for (int i = 0; i < tx.numOutputs(); i++) {
-                
                     UTXO ut = new UTXO(tx.getHash(), i);
                     scrgLedger.addUTXO(ut,tx.getOutput(i));
-                
                 } 
-                
                 txBlockList.add(tx);
-            
             }
-        
         }
-
         Transaction txBlock[] = new Transaction[txBlockList.size()];
         return txBlockList.toArray(txBlock);
     }
+    
 }

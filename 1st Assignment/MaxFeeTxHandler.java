@@ -52,7 +52,6 @@ public class MaxFeeTxHandler {
     * Will then be used for sorting based on Tx fee.
     */
     public class TxWithFee implements Comparable<TxWithFee>{
-        
         Transaction tx;
         double fee;
 
@@ -73,25 +72,18 @@ public class MaxFeeTxHandler {
      * Calculates transaction fee for a given transaction i.e. (sum of input values - sum of output values)
      */
     public double txFee(Transaction tx) {
-
         double txInputSum = 0;
         double txOutputSum = 0;
         
         for (Transaction.Input in : tx.getInputs()) {
-        
             UTXO ut = new UTXO(in.prevTxHash, in.outputIndex);
             Transaction.Output out = scrgLedger.getTxOutput(ut);
             txInputSum += out.value;
         }
-        
         for (Transaction.Output out : tx.getOutputs()) {
-        
             txOutputSum += out.value;
-        
         }
-
         return txInputSum - txOutputSum;
-
     }
 
     /**

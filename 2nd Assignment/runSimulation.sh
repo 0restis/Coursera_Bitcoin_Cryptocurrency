@@ -13,14 +13,10 @@ echo Enter number of tests you want to run [0 to 54]
 read testNum
 echo
 num=0
-for i in .1 .2 .3;
-    do
-       	for j in .15 .30 .45;
-     	    do
-     	        for k in 0.01 .04 .10;
-     		    do
-     		        for l in 10 20;
-     			    do
+for i in .1 .2 .3; do
+       	for j in .15 .30 .45; do
+     	        for k in 0.01 .04 .10; do
+     		        for l in 10 20; do
                             	if !(($num < $testNum)); then
                                     exit
                                 fi
@@ -32,8 +28,8 @@ for i in .1 .2 .3;
                                 echo
 				java Simulation $i $j $k $l
      				((num++))
-                            done
-     		    done
-     	    done
-    done 
+                        done
+     		done
+     	done
+done 
 

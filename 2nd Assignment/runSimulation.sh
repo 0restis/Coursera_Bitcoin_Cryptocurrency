@@ -16,24 +16,24 @@ num=0
 for i in .1 .2 .3;
     do
        	for j in .15 .30 .45;
-     		do
-     			for k in 0.01 .04 .10;
-     				do
-     					for l in 10 20;
-     						do
-                                if !(($num < $testNum)); then
+     	    do
+     	        for k in 0.01 .04 .10;
+     		    do
+     		        for l in 10 20;
+     			    do
+                            	if !(($num < $testNum)); then
                                     exit
                                 fi
-                                    echo ________________________________
-                                    echo
-                                    echo Test $num:
-									echo Simulation number $i $j $k $l:
-                                    echo ________________________________
-                                    echo
-									java Simulation $i $j $k $l
-     						    ((num++))
+                                echo ________________________________
+                                echo
+                                echo Test $num:
+				echo Simulation number $i $j $k $l:
+                                echo ________________________________
+                                echo
+				java Simulation $i $j $k $l
+     				((num++))
                             done
-     				done
-     		done
+     		    done
+     	    done
     done 
 

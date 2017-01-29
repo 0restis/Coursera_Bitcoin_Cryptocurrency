@@ -7,18 +7,18 @@
 # p_txDistribution (.01, .05, .10), and numRounds (10, 20). 
 clear 
 for i in .1 .2 .3;
-        do
- 			for j in .15 .30 .45;
-        		do
-        			for k in 0.01 .04 .10;
-        				do
-        					for l in  10 20;
-        						do
-                                    echo
-									echo Simulation number $i $j $k $l:
-									java Simulation $i $j $k $l
-        						done
-        				done
-        		done
-        done 
+   do
+ 	for j in .15 .30 .45;
+            do
+        	for k in 0.01 .04 .10;
+        	    do
+        		for l in  10 20;
+        		    do
+                                echo
+				echo Simulation number $i $j $k $l:
+				java Simulation $i $j $k $l
+        		    done
+               	    done
+            done
+   done 
 

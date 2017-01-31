@@ -44,17 +44,6 @@ public class CompliantNode implements Node {
             if ( followees[i] && !senders.contains(i))
                 malicious[i] = true;
         }
-        /*boolean isPresent;
-        for (int i = 0; i < followees.length; i++) {
-            isPresent = false;
-            for (Candidate candidate : candidates){
-                if (candidate.sender == i)
-                    isPresent = true;
-            }
-            if ( followees[i] && !isPresent) {
-                malicious[i] = true;
-            }
-        }*/
         for (Candidate candidate : candidates) { 
             if (!malicious[candidate.sender]) {
                 pendingTransactions.add(candidate.tx);

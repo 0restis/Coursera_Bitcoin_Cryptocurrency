@@ -3,3 +3,4 @@ Assignments of the 'Bitcoin and Cryptocurrency Technologies' course offered in C
 
 Assignment 1: ScroogeCoin  
 Assignment 2: Consensus from trust  
+Assignment 3: BlockChain
